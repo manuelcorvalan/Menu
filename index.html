@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Add your site or application content here -->
+        <div id="menu">
+            <nav id="nav-breadcrumb">
+                <ul>
+                    
+                </ul>
+                
+            </nav>
+            <nav id="nav-menu">
+
+            </nav>
+        </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
+        <script src="js/plugins.js"></script>
+        <script src="js/main.js"></script>
+        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                loadMenu(0);               
+            });
+            var _menu = {
+                    "menu_0":{
+                        "id": "0",
+                        "items": [
+                            { "id": "1", "value": "Localizar e Inmovilizar", "sub-menu":"0"},
+                            { "id": "2", "value": "Monitoreo y Control", "sub-menu":"menu_2"},
+                            { "id": "3", "value": "Ajustes", "sub-menu":"menu_3"},
+                            { "id": "4", "value": "Flotas", "sub-menu":"menu_4"},
+                            { "id": "5", "value": "Programar Actividades", "sub-menu":"menu_5"},
+                            { "id": "6", "value": "Suscripciones", "sub-menu":"menu_6"},
+                            { "id": "7", "value": "Reportes", "sub-menu":"0"}
+                        ]
+                    },
+                    "menu_2":{
+                        "id": "20",
+                        "items": [
+                            { "id": "21", "value": "Monitoreo", "sub-menu":"0"},
+                            { "id": "22", "value": "Control de componentes del vehículo", "sub-menu":"0"},
+                            { "id": "23", "value": "Control parental", "sub-menu":"menu_23"},
+                            { "id": "24", "value": "Fotografías", "sub-menu":"0"},
+                            { "id": "25", "value": "Envío de texto al vehículo", "sub-menu":"0"}
+                        ]   
+                    },
+                    "menu_23":{
+                       "id": "230",
+                        "items": [
+                            { "id": "231", "value": "Cercos geográficos", "sub-menu":"0"},
+                            { "id": "232", "value": "limite de velocidad", "sub-menu":"0"},
+                            { "id": "233", "value": "Alcotest para encendido", "sub-menu":"0"}
+                            
+                        ]  
+                    },
+                    "menu_3":{
+                        "id": "30",
+                        "items": [
+                            { "id": "31", "value": "Información básica", "sub-menu":"menu_31"},
+                            { "id": "32", "value": "Configuración de eventos", "sub-menu":"menu_32"},
+                            { "id": "33", "value": "Configuración de avisos", "sub-menu":"0"},
+                            { "id": "34", "value": "Actualización de registro", "sub-menu":"0"},
+                            { "id": "55", "value": "Ahorro de energía", "sub-menu":"0"},
+                            { "id": "55", "value": "Borrar registro de kilometraje", "sub-menu":"0"}
+                        ]   
+                    },
+                    "menu_31":{
+                        "id": "310",
+                        "items": [
+                            { "id": "311", "value": "Información del cliente", "sub-menu":"0"},
+                            { "id": "312", "value": "Información del vehículo", "sub-menu":"0"}
+                            
+                        ]   
+                    },
+                    "menu_32":{
+                        "id": "320",
+                        "items": [
+                            { "id": "321", "value": "Cercos geográficos", "sub-menu":"0"},
+                            { "id": "322", "value": "Límite de velocidad", "sub-menu":"0"},
+                            { "id": "322", "value": "Alcotest para encendido", "sub-menu":"0"},
+                            { "id": "322", "value": "Golpes, movimiento o remolque del vehículo", "sub-menu":"0"}
+                            
+                        ]   
+                    },
+                    "menu_4":{
+                        "id": "40",
+                        "items": [
+                            { "id": "41", "value": "Ver todos los vehículos", "sub-menu":"0"},
+                            { "id": "42", "value": "Ver todas las flotas", "sub-menu":"0"}
+                        ]   
+                    },
+                    "menu_6":{
+                        "id": "60",
+                        "items": [
+                            { "id": "61", "value": "Ver todas las suscripciones", "sub-menu":"0"},
+                            { "id": "62", "value": "Ver todos mis seguidores", "sub-menu":"0"}
+                        ]   
+                    }
+
+                };            
+            var _lastIdMenu = -1;
+
+            function getValueMenu(idMenu, idMenuCompare){
+                var _valueMenu;
+                var menu = "menu_"+idMenu;
+                $.each(_menu[menu].items,function(i, item){                    
+                    if(_menu[menu].items[i]["id"] == idMenuCompare) {
+                        _valueMenu = _menu[menu].items[i]["value"];
+                        break;
+                    }
+                });
+
+                return _valueMenu;
+            };
+            
+            function loadMenu(idMenu){       
+
+                var menu = "menu_"+idMenu;
+                var breadCrumd = $("#nav-breadcrumb");
+                var ul = $("<ul />");                
+
+                if ($("#"+idMenu).data('sub-menu') == 0){
+                    console.log('aca se llama al page');
+                }else{
+                    
+                    if(idMenu != 0){
+                        if(idMenu >= _lastIdMenu){ //voy aumentando de nivel o me mantengo en el mismo
+                            breadCrumd.find('ul').append('<li class="item"><a href="#" onclick="loadMenu('+idMenu+')">'+$("#"+idMenu).find('a').html()+'</a></li>');
+                            _lastIdMenu = idMenu;
+                        }else{
+                            breadCrumd.find('ul li:last').remove(); //eliminamos el ultimo hijo de la lista
+                        }
+
+                    }else{
+                        
+                        breadCrumd.find('ul').empty();
+                        breadCrumd.find('ul').append('<li><a href="#" onclick="loadMenu(0)" class="home-menu"></a></li>');
+                        _lastIdMenu = -1;
+
+                    }
+
+                    var nav_menu = $("#nav-menu").empty();
+                    $.each(_menu[menu].items,function(i, item){                    
+                        ul.append("<li id="+_menu[menu].items[i]["id"]+" data-sub-menu="+_menu[menu].items[i]["sub-menu"]+"><a href='#' onclick='loadMenu("+this.id+")'>"+_menu[menu].items[i]["value"]+"</a></li>")
+                    });
+                    nav_menu.append(ul);
+                }               
+            }
+
+        </script>
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+    </body>
+</html>
